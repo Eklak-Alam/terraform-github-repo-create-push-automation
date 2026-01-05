@@ -1,0 +1,50 @@
+name: 🛡️ Code Quality Checks
+
+# Trigger this workflow on any push to the main branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    name: 🏥 Sanity Checks
+    
+    steps:
+      # 1. Get the code from the repo
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Check for Broken Links (Very useful!)
+      - name: 🔗 Check for Broken Links
+        uses: lycheeverse/lychee-action@v1.9.0
+        with:
+          # Check all html and md files
+          args: --verbose --no-progress './**/*.html' './**/*.md'
+          fail: true
+
+      # 3. Validate HTML Syntax (Finds unclosed tags, etc.)
+      - name: 📝 Validate HTML5
+        uses: Cyb3r-Jak3/html5-validator-action@v7.2.0
+        with:
+          root: .
+          exclude: node_modules
+
+  formatting-check:
+    runs-on: ubuntu-latest
+    name: 🎨 Style Check
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 4. Check Code Formatting with Prettier
+      - name: Prettier Check
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This will fail if your code is messy (indentation, etc.)
+          dry: true
+          # Check these file types
+          prettier_options: --check **/*.{html,js,css,md}
