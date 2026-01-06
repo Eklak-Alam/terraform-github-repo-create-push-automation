@@ -1,50 +1,56 @@
-name: 🛡️ Code Quality Checks
+name: 🛡️ Auto-Fix & Check
 
-# Trigger this workflow on any push to the main branch
+# Trigger on push to main
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: write  # <--- CRITICAL: Gives permission to fix your code and push it back
+
 jobs:
-  health-check:
+  # JOB 1: Fix my messy code automatically
+  auto-format:
     runs-on: ubuntu-latest
-    name: 🏥 Sanity Checks
+    name: 🎨 Auto-Format Code (Prettier)
     
     steps:
-      # 1. Get the code from the repo
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }} # Check out the actual branch to push back to it
+
+      - name: Run Prettier & Auto-Commit
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This will Fix the files, Commit them, and Push them back to the repo
+          commit_message: "🎨 Auto-formatted code via GitHub Actions"
+          prettier_options: --write **/*.{html,js,css,md}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 2: Check for broken links and bad HTML
+  health-check:
+    needs: auto-format # Wait for formatting to finish first
+    runs-on: ubuntu-latest
+    name: 🏥 Health Check
+    
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. Check for Broken Links (Very useful!)
+      # 1. Check for Broken Links
       - name: 🔗 Check for Broken Links
         uses: lycheeverse/lychee-action@v1.9.0
         with:
-          # Check all html and md files
           args: --verbose --no-progress './**/*.html' './**/*.md'
           fail: true
 
-      # 3. Validate HTML Syntax (Finds unclosed tags, etc.)
+      # 2. Validate HTML (Using the correct, working action now)
       - name: 📝 Validate HTML5
-        uses: Cyb3r-Jak3/html5-validator-action@v7.2.0
+        uses: anishathalye/html5validator-action@v1.4.0 # <--- FIXED ACTION
         with:
           root: .
           exclude: node_modules
-
-  formatting-check:
-    runs-on: ubuntu-latest
-    name: 🎨 Style Check
-    
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      # 4. Check Code Formatting with Prettier
-      - name: Prettier Check
-        uses: creyD/prettier_action@v4.3
-        with:
-          # This will fail if your code is messy (indentation, etc.)
-          dry: true
-          # Check these file types
-          prettier_options: --check **/*.{html,js,css,md}
