@@ -14,9 +14,10 @@ This project demonstrates a unique **DevOps workflow** where Terraform is used n
 It bridges the gap between **Infrastructure Provisioning** and **Application Deployment**.
 
 ### 🌟 Key Features
-* **Zero-Click Repo Creation:** Terraform calls the GitHub API to create the repository.
-* **Automated Git Push:** Uses `local-exec` provisioners to initialize Git and push the frontend code immediately.
-* **Modern UI:** A clean, dark-mode HTML/CSS dashboard explaining the architecture.
+
+- **Zero-Click Repo Creation:** Terraform calls the GitHub API to create the repository.
+- **Automated Git Push:** Uses `local-exec` provisioners to initialize Git and push the frontend code immediately.
+- **Modern UI:** A clean, dark-mode HTML/CSS dashboard explaining the architecture.
 
 ---
 
@@ -25,8 +26,7 @@ It bridges the gap between **Infrastructure Provisioning** and **Application Dep
 The `main.tf` script performs two distinct actions in sequence:
 
 1.  **Phase 1: Provisioning** Uses the `github` provider to create a new public repository on your GitHub account.
-    
-2.  **Phase 2: Bootstrap ( The "Hack" )** Uses a `null_resource` with a `local-exec` provisioner to execute shell commands on the local machine. It initializes git, adds the remote origin of the *just-created* repo, and pushes the `main` branch.
+2.  **Phase 2: Bootstrap ( The "Hack" )** Uses a `null_resource` with a `local-exec` provisioner to execute shell commands on the local machine. It initializes git, adds the remote origin of the _just-created_ repo, and pushes the `main` branch.
 
 ```mermaid
 graph LR
@@ -35,3 +35,4 @@ graph LR
     C -->|Create| D[Empty Repository]
     B -->|local-exec| E[Git Push]
     E -->|Upload Code| D
+```

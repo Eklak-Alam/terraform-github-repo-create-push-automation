@@ -1,142 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #0f172a; /* Dark Slate */
-    color: #e2e8f0;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 40px 20px;
+  background-color: #0f172a; /* Dark Slate */
+  color: #e2e8f0;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
 .container {
-    max-width: 700px;
-    width: 100%;
-    text-align: center;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
 }
 
 /* Header Styles */
 header {
-    margin-bottom: 50px;
-    opacity: 0; /* Hidden for animation */
-    animation: fadeIn 1s ease-out forwards;
+  margin-bottom: 50px;
+  opacity: 0; /* Hidden for animation */
+  animation: fadeIn 1s ease-out forwards;
 }
 
 .badge {
-    background: rgba(99, 102, 241, 0.2);
-    color: #818cf8;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    display: inline-block;
-    margin-bottom: 15px;
-    border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 15px;
+  border: 1px solid rgba(99, 102, 241, 0.3);
 }
 
 h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .highlight {
-    background: linear-gradient(90deg, #7c3aed, #db2777);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, #7c3aed, #db2777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-    color: #94a3b8;
-    font-size: 1.1rem;
+  color: #94a3b8;
+  font-size: 1.1rem;
 }
 
 /* Timeline / Cards */
 .timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .card {
-    background: #1e293b;
-    width: 100%;
-    padding: 25px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    border: 1px solid #334155;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0; /* Hidden for animation */
-    transform: translateY(20px);
+  background: #1e293b;
+  width: 100%;
+  padding: 25px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  border: 1px solid #334155;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  opacity: 0; /* Hidden for animation */
+  transform: translateY(20px);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
-    border-color: #7c3aed;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
+  border-color: #7c3aed;
 }
 
 .icon-box {
-    width: 50px;
-    height: 50px;
-    background: #334155;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-right: 20px;
-    color: #cbd5e1;
+  width: 50px;
+  height: 50px;
+  background: #334155;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-right: 20px;
+  color: #cbd5e1;
 }
 
-.terraform-color { color: #844fba; background: rgba(132, 79, 186, 0.2); }
-.git-color { color: #f34f29; background: rgba(243, 79, 41, 0.1); }
+.terraform-color {
+  color: #844fba;
+  background: rgba(132, 79, 186, 0.2);
+}
+.git-color {
+  color: #f34f29;
+  background: rgba(243, 79, 41, 0.1);
+}
 
 .content h2 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    color: #f8fafc;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #f8fafc;
 }
 
 .content p {
-    font-size: 0.95rem;
-    color: #94a3b8;
-    line-height: 1.4;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.4;
 }
 
 .arrow {
-    color: #475569;
-    font-size: 1.2rem;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
+  color: #475569;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
 
 /* Footer */
 footer {
-    margin-top: 50px;
-    color: #64748b;
-    font-size: 0.9rem;
-    border-top: 1px solid #334155;
-    padding-top: 20px;
+  margin-top: 50px;
+  color: #64748b;
+  font-size: 0.9rem;
+  border-top: 1px solid #334155;
+  padding-top: 20px;
 }
 
 .tf-text {
-    color: #844fba;
-    font-weight: bold;
+  color: #844fba;
+  font-weight: bold;
 }
 
 /* Animations */
 @keyframes fadeIn {
-    to { opacity: 1; transform: translateY(0); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,58 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Automated by Terraform</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <div class="badge">INFRASTRUCTURE AS CODE</div>
-            <h1>Project <span class="highlight">Auto-Deploy</span></h1>
-            <p class="subtitle">This website didn't exist 5 minutes ago. It was created and pushed entirely by code.</p>
-        </header>
+      <header>
+        <div class="badge">INFRASTRUCTURE AS CODE</div>
+        <h1>Project <span class="highlight">Auto-Deploy</span></h1>
+        <p class="subtitle">
+          This website didn't exist 5 minutes ago. It was created and pushed
+          entirely by code.
+        </p>
+      </header>
 
-        <main>
-            <div class="timeline">
-                <div class="card" id="card-1">
-                    <div class="icon-box"><i class="fa-brands fa-html5"></i></div>
-                    <div class="content">
-                        <h2>1. Code Created</h2>
-                        <p>I wrote HTML, CSS, and JS files locally on my machine.</p>
-                    </div>
-                </div>
-
-                <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
-
-                <div class="card" id="card-2">
-                    <div class="icon-box terraform-color"><i class="fa-solid fa-code-branch"></i></div>
-                    <div class="content">
-                        <h2>2. Terraform Init</h2>
-                        <p>Terraform woke up, connected to the GitHub API, and created a fresh repository.</p>
-                    </div>
-                </div>
-
-                <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
-
-                <div class="card" id="card-3">
-                    <div class="icon-box git-color"><i class="fa-brands fa-github"></i></div>
-                    <div class="content">
-                        <h2>3. Auto-Push</h2>
-                        <p>Terraform ran a <code>local-exec</code> hook to initialize Git and push this code live.</p>
-                    </div>
-                </div>
+      <main>
+        <div class="timeline">
+          <div class="card" id="card-1">
+            <div class="icon-box"><i class="fa-brands fa-html5"></i></div>
+            <div class="content">
+              <h2>1. Code Created</h2>
+              <p>I wrote HTML, CSS, and JS files locally on my machine.</p>
             </div>
-        </main>
+          </div>
 
-        <footer>
-            <p>Built by <strong>Eklak Alam</strong> | Powered by <span class="tf-text">Terraform</span></p>
-        </footer>
+          <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
+
+          <div class="card" id="card-2">
+            <div class="icon-box terraform-color">
+              <i class="fa-solid fa-code-branch"></i>
+            </div>
+            <div class="content">
+              <h2>2. Terraform Init</h2>
+              <p>
+                Terraform woke up, connected to the GitHub API, and created a
+                fresh repository.
+              </p>
+            </div>
+          </div>
+
+          <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
+
+          <div class="card" id="card-3">
+            <div class="icon-box git-color">
+              <i class="fa-brands fa-github"></i>
+            </div>
+            <div class="content">
+              <h2>3. Auto-Push</h2>
+              <p>
+                Terraform ran a <code>local-exec</code> hook to initialize Git
+                and push this code live.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          Built by <strong>Eklak Alam</strong> | Powered by
+          <span class="tf-text">Terraform</span>
+        </p>
+      </footer>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
