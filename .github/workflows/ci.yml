@@ -1,6 +1,5 @@
 name: 🛡️ Auto-Fix & Check
 
-# Trigger on push to main
 on:
   push:
     branches: [ "main" ]
@@ -8,32 +7,31 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: write  # <--- CRITICAL: Gives permission to fix your code and push it back
+  contents: write  # Needed to push the auto-fixes
 
 jobs:
-  # JOB 1: Fix my messy code automatically
+  # JOB 1: Fix messy code automatically
   auto-format:
     runs-on: ubuntu-latest
-    name: 🎨 Auto-Format Code (Prettier)
+    name: 🎨 Auto-Format (Prettier)
     
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }} # Check out the actual branch to push back to it
+          ref: ${{ github.head_ref }}
 
       - name: Run Prettier & Auto-Commit
         uses: creyD/prettier_action@v4.3
         with:
-          # This will Fix the files, Commit them, and Push them back to the repo
           commit_message: "🎨 Auto-formatted code via GitHub Actions"
           prettier_options: --write **/*.{html,js,css,md}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # JOB 2: Check for broken links and bad HTML
+  # JOB 2: Health Check (The Robust Way)
   health-check:
-    needs: auto-format # Wait for formatting to finish first
+    needs: auto-format
     runs-on: ubuntu-latest
     name: 🏥 Health Check
     
@@ -48,9 +46,13 @@ jobs:
           args: --verbose --no-progress './**/*.html' './**/*.md'
           fail: true
 
-      # 2. Validate HTML (Using the correct, working action now)
-      - name: 📝 Validate HTML5
-        uses: anishathalye/html5validator-action@v1.4.0 # <--- FIXED ACTION
+      # 2. Validate HTML (Manually installing the tool so it NEVER fails)
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
         with:
-          root: .
-          exclude: node_modules
+          python-version: '3.x'
+
+      - name: 📝 Install & Run Validator
+        run: |
+          pip install html5validator
+          html5validator --root . --ignore "node_modules"
